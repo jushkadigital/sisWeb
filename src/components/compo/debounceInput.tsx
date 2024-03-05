@@ -29,7 +29,7 @@ function DebouncedInput({
   }, [value])
 
   return (
-      <div className="w-52 absolute z-20 top-10 bg-white rounded-lg  ">
+      <div className="w-80 absolute z-20 top-20 bg-white rounded-lg  ">
         <Input
             variant={"outlined"}
             color={"red"}

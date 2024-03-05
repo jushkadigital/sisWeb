@@ -21,6 +21,7 @@ import { RenderLogout } from "./RenderNavigation";
 import { NavbarSimple } from "../compo/SimpleNavBar.tsx";
 import { AuthData } from "../../provider/authProvider.tsx";
 import { AuthProviderType } from "../../@types/authTypes";
+import {FooterPDS} from "../compo/footer.tsx";
 
 // import Link from 'next/link'
 const NamesNavbar2URL: { [key: string]: string } = {
@@ -89,16 +90,14 @@ export function NavigationDash({ children }: { children: React.ReactNode }) {
       <NavbarSimple />
       
       <div className="flex flex-row">
-        <Drawer open={open} onClose={() => { }} overlay={false} className="top-22 static bg-black flex-col items-center justify-center">
+        <Drawer open={open} onClose={() => { }} overlay={false} className="top-22 static bg-black flex-col items-center justify-center mt-[150px]">
           { user.role == "Administrator" &&
-        <div className="z-10">
+        <div className="z-20">
           <Radio name="rol" label="Operaciones" value="Operaciones" checked={roleMode == "Operaciones"} onChange={changeRoleMode} />
           <Radio name="rol" label="Ventas" value="Ventas" checked={roleMode == "Ventas"} onChange={changeRoleMode}/>
           <Radio name="rol" label="Admin" value="Administrator" checked={roleMode == "Administrator"} onChange={changeRoleMode}/>
         </div> 
       }
-
-
           <div className={"flex justify-center mt-3"}>
             <Typography color={"white"} className={"font-bold"} children={"PDS DASHBOARD"} />
           </div>
@@ -132,6 +131,9 @@ export function NavigationDash({ children }: { children: React.ReactNode }) {
         </Drawer>
         {children}
       </div>
+
+
+      <FooterPDS />
 
     </div>
   )
