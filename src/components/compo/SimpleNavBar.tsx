@@ -33,7 +33,7 @@ export function NavbarSimple() {
         <Navbar className="max-w-full fixed z-20 lg:px-8 bg-[#D20000]  h-[150px]" >
             <div className="flex flex-row  items-center justify-between text-white">
                 <div className={" w-40 h-[150px]"}>
-                    <img className=" max-w-40 max-h-40" src={"/src/assets/logo-psd.svg"}/>
+                    <img className=" max-w-40 max-h-40" src={"/src/assets/logo-pds.svg"}/>
                 </div>
                 <Typography className={"font-roboto font-bold text-3xl self-center"} children={"SISTEMA DE REGISTRO PDS VIAJES"} />
                     <NavList />
