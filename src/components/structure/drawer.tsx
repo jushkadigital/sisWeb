@@ -92,9 +92,9 @@ export function NavigationDash({ children }: { children: React.ReactNode }) {
         <Drawer open={open} onClose={() => { }} overlay={false} className="top-22 static bg-black flex-col items-center justify-center">
           { user.role == "Administrator" &&
         <div className="z-10">
-          <Radio name="rol" label="Operaciones" value="Operaciones" checked={roleMode == "Operaciones"} onChange={changeRoleMode} />
-          <Radio name="rol" label="Ventas" value="Ventas" checked={roleMode == "Ventas"} onChange={changeRoleMode}/>
-          <Radio name="rol" label="Admin" value="Administrator" checked={roleMode == "Administrator"} onChange={changeRoleMode}/>
+          <Radio name="rol" label={<Typography color="white" >Operaciones</Typography>} color="red" value="Operaciones" checked={roleMode == "Operaciones"} onChange={changeRoleMode} />
+          <Radio name="rol" label={<Typography color="white" >Ventas</Typography>} value="Ventas" checked={roleMode == "Ventas"} color="red" onChange={changeRoleMode}/>
+          <Radio name="rol" label={<Typography color="white" >Admin</Typography>} value="Administrator" checked={roleMode == "Administrator"} color="red" onChange={changeRoleMode}/>
         </div> 
       }
 
@@ -126,7 +126,7 @@ export function NavigationDash({ children }: { children: React.ReactNode }) {
             </List>
 
           </div>
-          <div className={"w-full flex justify-center items-center"}>
+          <div className={"w-full flex justify-start items-start ml-2"}>
             <RenderLogout />
           </div>
         </Drawer>
