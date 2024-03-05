@@ -126,16 +126,16 @@ const traducciones: { [key: string]: string } = {
   direccion: "Dirección",
   menu: "Menú",
   vehiculo: "Vehículo",
-  pulle:"Pull",
-  pullp:"Pull",
-  privadop:"Privado",
-  privadoe:"Privado",
-  adultoe:"Adulto",
-  adultop:"Adulto",
-  ninioe:"Niño",
-  niniop:"Niño",
-  infantep:"Infante",
-  infantee:"Infante",
+  pulle: "Pull",
+  pullp: "Pull",
+  privadop: "Privado",
+  privadoe: "Privado",
+  adultoe: "Adulto",
+  adultop: "Adulto",
+  ninioe: "Niño",
+  niniop: "Niño",
+  infantep: "Infante",
+  infantee: "Infante",
 
 
   // Agrega más traducciones según sea necesario
@@ -203,7 +203,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 // }
 
 const ERROR_MSG = "Oops! Something went wrong";
-const fetchData = async function ({ url, options }: FetchData): Promise<any> {
+const fetchData = async function({ url, options }: FetchData): Promise<any> {
   const response = await fetch(url, options);
 
   if (!response.ok) {
@@ -522,16 +522,16 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
     const nextFile =
       file.length - 1 <= index
         ? file.concat(
-            Array.from(Array(index - (file.length - 1)), () => undefined).map(
-              (el, idx) => {
-                if (idx == index - (file.length - 1) - 1) {
-                  return newFile;
-                } else {
-                  return el;
-                }
+          Array.from(Array(index - (file.length - 1)), () => undefined).map(
+            (el, idx) => {
+              if (idx == index - (file.length - 1) - 1) {
+                return newFile;
+              } else {
+                return el;
               }
-            )
+            }
           )
+        )
         : [...file.slice(0, insertAt), newFile, ...file.slice(insertAt)];
     setFile(nextFile);
   };
@@ -724,8 +724,8 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
 
   const auxiliare = [
     {
-      accessorkey: `action`,
-      id: "action",
+      accessorkey: `update`,
+      id: "update",
       cell: ({ getValue, row, column: { id }, table }) => {
         const Editable = async () => {
           const cleanIdUp = async (url: string) => {
@@ -770,7 +770,7 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
           );
           // console.log("2");
           table.options.meta?.setCurrentID((ele) => row.original.id);
-          
+
           // localStorage.setItem("currentID", row.original.id)
         };
 
@@ -861,7 +861,7 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
           </div>
         );
       },
-      header: () => <span>action</span>,
+      header: () => <span></span>,
     },
     {
       id: "delete",
@@ -893,7 +893,7 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
         //   setUploadTimeDel((prev)=>replaceArray(Array.from(data || [], (_) => false),prev))
         // }, [data]);
 
-        return permission && table.options.meta?.uploadTimeDel[row.index] ? (
+        return table.options.meta?.uploadTimeDel[row.index] ? (
           <Loader />
         ) : (
           <TrashIcon className="w-5" onClick={Delete} />
@@ -968,7 +968,7 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
         };
       }
     })
-    .concat(auxiliare);
+    .concat(permission ? auxiliare : []);
   const columns = React.useMemo<ColumnDef<any, any>[]>(() => gaa, [baseColumns]);
 
   const table = useReactTable({
@@ -997,8 +997,10 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
         skipAutoResetPageIndex();
         await funn(
           { data: user.id, id: row.original.id }
-          ,{optimisticData:dataa=> ([...dataa,{...row.original,currentUser:user.id}]),
-          rollbackOnError:true} 
+          , {
+            optimisticData: dataa => ([...dataa, { ...row.original, currentUser: user.id }]),
+            rollbackOnError: true
+          }
         );
         skipAutoResetPageIndex();
         // await funn(
@@ -1043,42 +1045,42 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
             {isLoading
               ? "aoe"
               : table.getHeaderGroups().map((headerGroup) => (
-                  <div key={headerGroup.id} className="table-row">
-                    {headerGroup.headers.map((header) => {
-                      return (
-                        <div
-                          key={header.id}
-                          // colSpan={header.colSpan}
-                          className="table-cell border-b border-blue-gray-100 bg-blue-gray-50 p-4"
-                        >
-                          {header.isPlaceholder ? null : (
-                            <HeaderTable header={header} table={table}>
-                              <div
-                                {...{
-                                  className: header.column.getCanSort()
-                                    ? "cursor-pointer select-none"
-                                    : "",
-                                  onClick:
-                                    header.column.getToggleSortingHandler(),
-                                }}
-                              >
-                                {flexRender(
-                                  header.column.columnDef.header,
-                                  header.getContext()
-                                )}
-                                {{
-                                  asc: " 🔼",
-                                  desc: " 🔽",
-                                }[header.column.getIsSorted() as string] ??
-                                  null}
-                              </div>
-                            </HeaderTable>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                ))}
+                <div key={headerGroup.id} className="table-row">
+                  {headerGroup.headers.map((header) => {
+                    return (
+                      <div
+                        key={header.id}
+                        // colSpan={header.colSpan}
+                        className="table-cell border-b border-blue-gray-100 bg-blue-gray-50 p-4"
+                      >
+                        {header.isPlaceholder ? null : (
+                          <HeaderTable header={header} table={table}>
+                            <div
+                              {...{
+                                className: header.column.getCanSort()
+                                  ? "cursor-pointer select-none"
+                                  : "",
+                                onClick:
+                                  header.column.getToggleSortingHandler(),
+                              }}
+                            >
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                              {{
+                                asc: " 🔼",
+                                desc: " 🔽",
+                              }[header.column.getIsSorted() as string] ??
+                                null}
+                            </div>
+                          </HeaderTable>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
           </div>
           <div className="table-row-group">
             {<form id="CreateForm" onSubmit={createForm}></form>}
@@ -1340,30 +1342,30 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
           <div className="mx-auto">
             <div className="flex items-center gap-2">
               <button
-                  className="border rounded p-1"
-                  onClick={() => table.setPageIndex(0)}
-                  disabled={!table.getCanPreviousPage()}
+                className="border rounded p-1"
+                onClick={() => table.setPageIndex(0)}
+                disabled={!table.getCanPreviousPage()}
               >
                 {"<<"}
               </button>
               <button
-                  className="border rounded p-1"
-                  onClick={() => table.previousPage()}
-                  disabled={!table.getCanPreviousPage()}
+                className="border rounded p-1"
+                onClick={() => table.previousPage()}
+                disabled={!table.getCanPreviousPage()}
               >
                 {"<"}
               </button>
               <button
-                  className="border rounded p-1"
-                  onClick={() => table.nextPage()}
-                  disabled={!table.getCanNextPage()}
+                className="border rounded p-1"
+                onClick={() => table.nextPage()}
+                disabled={!table.getCanNextPage()}
               >
                 {">"}
               </button>
               <button
-                  className="border rounded p-1"
-                  onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-                  disabled={!table.getCanNextPage()}
+                className="border rounded p-1"
+                onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                disabled={!table.getCanNextPage()}
               >
                 {">>"}
               </button>
@@ -1377,27 +1379,27 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
               <span className="flex items-center gap-1">
                 | Ir a la Pagina:
                 <input
-                    type="number"
-                    defaultValue={table.getState().pagination.pageIndex + 1}
-                    onChange={(e) => {
-                      const page = e.target.value
-                          ? Number(e.target.value) - 1
-                          : 0;
-                      table.setPageIndex(page);
-                    }}
-                    className="border p-1 rounded w-16"
+                  type="number"
+                  defaultValue={table.getState().pagination.pageIndex + 1}
+                  onChange={(e) => {
+                    const page = e.target.value
+                      ? Number(e.target.value) - 1
+                      : 0;
+                    table.setPageIndex(page);
+                  }}
+                  className="border p-1 rounded w-16"
                 />
               </span>
               <select
-                  value={table.getState().pagination.pageSize}
-                  onChange={(e) => {
-                    table.setPageSize(Number(e.target.value));
-                  }}
+                value={table.getState().pagination.pageSize}
+                onChange={(e) => {
+                  table.setPageSize(Number(e.target.value));
+                }}
               >
                 {[10, 20, 30, 40, 50].map((pageSize) => (
-                    <option key={pageSize} value={pageSize}>
-                      Mostrar {pageSize}
-                    </option>
+                  <option key={pageSize} value={pageSize}>
+                    Mostrar {pageSize}
+                  </option>
                 ))}
               </select>
               <div>{table.getPrePaginationRowModel().rows.length} Filas</div>
@@ -1405,12 +1407,14 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
           </div>
         )}
       </Card>
-      <button
+      { permission &&
+        <button
           className="fixed bottom-8 right-5 rounded-full w-28 flex justify-center items-center  h-28 border border-blue-gray-400"
-        onClick={async () => await Add()}
-      >
-        <PlusIcon color="red" className="w-20" />
-      </button>
+          onClick={async () => await Add()}
+        >
+          <PlusIcon color="red" className="w-20" />
+        </button>
+      }
       <ToastContainer />
     </div>
   );
