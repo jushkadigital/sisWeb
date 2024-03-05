@@ -51,6 +51,20 @@ export const Upselling = () => {
     {name:"pvp",extra:"sol",type:"number"},
     {name:"pve",extra:"dolar",type:"number"},
   ]
+
+const roles:{[key:string]:any} = {
+    "Operaciones":baseColumnsO,
+    "Ventas":baseColumnsV,
+    "Administrator":baseColumns
+  }
+
+  const permisos:{[key:string]:boolean} = {
+    "Operaciones":false,
+    "Ventas": false,
+    "Administrator":true
+  }
+
+
   return (
     <div className={"mt-[170px] ml-3"}>
       <Typography>

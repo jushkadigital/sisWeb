@@ -9,6 +9,7 @@ import {
   Tab,
   TabPanel,
   Typography,
+  Button,
 } from "@material-tailwind/react";
 import {UserCircleIcon} from '@heroicons/react/24/outline'
 import Home from "../pages/Initial";
@@ -82,6 +83,6 @@ export const RenderMenu = () => {
 export const RenderLogout = () => {
   const { user,logout } = AuthData() as AuthProviderType;
   return (
-      <button onClick={()=>logout()}>Logout</button>
+      <Button variant="outlined" color="white" onClick={()=>logout()}>Logout</Button>
   );
 };
