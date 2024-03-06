@@ -40,9 +40,8 @@ export function NavbarSimple({ action }: Props) {
             <Bars3Icon className="w-8" onClick={action} />      
           </div>
           <div className={"w-40"}>
-            <img className=" max-w-40 max-h-40" src="./logo-pds.svg" />
+            <img className=" max-w-32 max-h-32" src="./logo-pds.svg" />
           </div>
-        
         </div>
 
         <Typography className={"font-roboto font-bold text-3xl self-center"} children={"SISTEMA DE REGISTRO PDS VIAJES"} />

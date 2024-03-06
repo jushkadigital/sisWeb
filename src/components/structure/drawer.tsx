@@ -96,7 +96,7 @@ export function NavigationDash({ children }: { children: React.ReactNode }) {
     <div>
       <NavbarSimple action={toggleDrawer}/>
       
-      <div className="flex flex-row">
+      <div className="flex flex-col min-h-screen">
 
         <Drawer open={open} onClose={() => { }} overlay={false} className="top-22 bg-black flex-col items-center justify-center mt-[150px]">
 
@@ -122,8 +122,8 @@ export function NavigationDash({ children }: { children: React.ReactNode }) {
             <motion.div custom={idxNav} animate="visible" variants={variants} className="h-7 w-2 bg bg-[#D20000] mt-4"></motion.div>
             <List>
               {navNameICon.map((ele, idx) => (
-                <Link to={NamesNavbar2URL[ele.name]}>
-                  <ListItem key={idx} onClick={() => setIdxNav(idx)} >
+                <Link className={"hover:bg-red-900 active:bg-red-900 "} to={NamesNavbar2URL[ele.name]}>
+                  <ListItem className={"hover:bg-red-900 active:bg-red-900"} key={idx} onClick={() => setIdxNav(idx)} >
                     <ListItemPrefix >
                       {ele.logo}
                     </ListItemPrefix>
@@ -143,10 +143,7 @@ export function NavigationDash({ children }: { children: React.ReactNode }) {
           {React.cloneElement(children,{isOpen:open})}
         {/* {children} */}
       </div>
-
-
       <FooterPDS />
-
     </div>
   )
 }
