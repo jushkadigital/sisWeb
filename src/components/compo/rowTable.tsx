@@ -1,5 +1,5 @@
 import useSWR, { useSWRConfig } from "swr";
-import { DocumentIcon, TrashIcon, PlusIcon } from "@heroicons/react/24/outline";
+import {DocumentIcon, TrashIcon, PlusIcon, ArrowRightIcon} from "@heroicons/react/24/outline";
 import {
   FetchData,
   createTour,
@@ -69,7 +69,7 @@ import { ToastContainer, toast } from "react-toastify";
 import useSWRMutation from "swr/mutation";
 import { AuthProviderType } from "../../@types/authTypes";
 import PopOver from "./popOver";
-import {ArrowLeftIcon} from "@heroicons/react/16/solid";
+import {ArrowLeftIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon} from "@heroicons/react/16/solid";
 declare module "@tanstack/table-core" {
   interface FilterFns {
     fuzzy: FilterFn<unknown>;
@@ -1350,40 +1350,40 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
           </div>
         </div>
         {data && (
-          <div className="mx-auto mt-10">
+          <div className="mx-auto mt-10 mb-10">
             <div className="flex items-center gap-2">
               <IconButton
-                className="w-2 h-6 bg-white border-black p-4"
+                className="w-2 h-8 bg-white  border-blue-50 p-4 mr-4"
                 onClick={() => table.setPageIndex(0)}
                 disabled={!table.getCanPreviousPage()}
               >
-                <ArrowLeftIcon strokeWidth={1} color={"#000"} className="h-4 w-4 " />
+                <ChevronDoubleLeftIcon  strokeWidth={1} color={"#000"} className="h-8 w-4 " />
               </IconButton>
 
-
-              <button
-                className="border rounded p-1"
-                onClick={() => table.previousPage()}
-                disabled={!table.getCanPreviousPage()}
+              <IconButton
+                  className="w-2 h-6 bg-white border-blue-50 p-4 mr-4"
+                  onClick={() => table.previousPage()}
+                  disabled={!table.getCanPreviousPage()}
               >
-                {"<"}
-              </button>
+                <ArrowLeftIcon strokeWidth={1} color={"#000"} className="h-8 w-4 " />
+              </IconButton>
 
-              <button
-                className="border rounded p-1"
-                onClick={() => table.nextPage()}
-                disabled={!table.getCanNextPage()}
+              <IconButton
+                  className="w-2 h-6 bg-white border-blue-50 p-4 mr-4"
+                  onClick={() => table.nextPage()}
+                  disabled={!table.getCanNextPage()}
               >
-                {">"}
-              </button>
+                <ArrowRightIcon strokeWidth={1} color={"#000"} className="h-8 w-4 " />
+              </IconButton>
 
-              <button
-                className="border rounded p-1"
-                onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-                disabled={!table.getCanNextPage()}
+              <IconButton
+                  className="w-2 h-6 bg-white border-blue-50 p-4 mr-4"
+                  onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                  disabled={!table.getCanNextPage()}
               >
-                {">>"}
-              </button>
+                <ChevronDoubleRightIcon  strokeWidth={1} color={"#000"} className="h-8 w-4 " />
+              </IconButton>
+
 
               {/*<span className="flex items-center gap-1">*/}
               {/*  <div>Pagina</div>*/}
@@ -1435,15 +1435,16 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
           </div>
         )}
       </Card>
-
-      { permission &&
-        <button
-          className="fixed bottom-8 right-5 rounded-full w-28 flex justify-center items-center  h-28 border border-blue-gray-400"
-          onClick={async () => await Add()}
-        >
-          <PlusIcon color="red" className="w-20" />
-        </button>
-      }
+        {/*{ permission &&*/}
+      <div className={"border-8 "}>
+            <button
+              className="fixed bottom-32 right-36 mr-[-40px]  bg-red-900  rounded-full w-24 flex justify-center items-center  h-24 border border-red-900 hover:border-white shadow-lg shadow-black "
+              onClick={async () => await Add()}
+            >
+              <PlusIcon color="white" className="w-20" />
+            </button>
+      </div>
+        {/*}*/}
       <ToastContainer />
     </div>
   );
