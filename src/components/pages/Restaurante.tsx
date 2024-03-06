@@ -71,6 +71,7 @@ export const Restaurante = ({isOpen}:{isOpen:boolean}) => {
     { name: "fichaTecnica", extra: "link", type: "text" },
     // { name: "pdfProveedor", extra: "link", type: "text" },
   ]
+
  const roles:{[key:string]:any} = {
     "Operaciones":baseColumnsO,
     "Ventas":baseColumnsV,
