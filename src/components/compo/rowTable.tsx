@@ -1435,16 +1435,14 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
           </div>
         )}
       </Card>
-        {/*{ permission &&*/}
-      <div className={"border-8 "}>
+        { permission && data &&
             <button
-              className="fixed bottom-32 right-36 mr-[-40px]  bg-red-900  rounded-full w-24 flex justify-center items-center  h-24 border border-red-900 hover:border-white shadow-lg shadow-black "
+              className="sticky bottom-32  left-[1350px] overflow-x-auto  mr-[-40px]  bg-red-900  rounded-full w-24 flex justify-center items-center  h-24 border border-red-900 hover:border-white shadow-lg shadow-black "
               onClick={async () => await Add()}
             >
               <PlusIcon color="white" className="w-20" />
             </button>
-      </div>
-        {/*}*/}
+        }
       <ToastContainer />
     </div>
   );
