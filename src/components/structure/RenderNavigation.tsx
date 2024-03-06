@@ -14,6 +14,7 @@ import {
 import {UserCircleIcon} from '@heroicons/react/24/outline'
 import Home from "../pages/Initial";
 import { Login } from "../pages/Login"
+import { cloneElement } from "react";
 
 export const RenderInfo = () => {
   const { user } = AuthData() as AuthProviderType;
@@ -37,15 +38,16 @@ export const InitialRoute =() =>{
   )
 
 }
-export const RenderRoutes = () => {
+export const RenderRoutes = ({isOpen}:{isOpen:boolean}) => {
   const { user } = AuthData() as AuthProviderType;
+  console.log(isOpen)
   return (
     <Routes>
       {nav.map((r, i) => {
         if (r.isPrivate && user.isAuthenticated) {
-          return <Route key={i} path={r.path} element={r.element} />;
+          return <Route key={i} path={r.path} element={cloneElement(r.element,{isOpen:isOpen})} />;
         } else if (!r.isPrivate) {
-          return <Route key={i} path={r.path} element={r.element} />;
+          return <Route key={i} path={r.path} element={cloneElement(r.element,{isOpen:isOpen})} />;
         } else return false;
       })}
     </Routes>

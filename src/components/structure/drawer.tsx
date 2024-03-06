@@ -87,10 +87,10 @@ export function NavigationDash({ children }: { children: React.ReactNode }) {
   return (
 
     <div>
-      <NavbarSimple />
+      <NavbarSimple action={toggleDrawer}/>
       
       <div className="flex flex-row">
-        <Drawer open={open} onClose={() => { }} overlay={false} className="top-22 static bg-black flex-col items-center justify-center mt-[150px]">
+        <Drawer open={open} onClose={() => { }} overlay={false} className="top-22 bg-black flex-col items-center justify-center mt-[150px]">
           { user.role == "Administrator" &&
 
         <div className="">
@@ -131,7 +131,8 @@ export function NavigationDash({ children }: { children: React.ReactNode }) {
             <RenderLogout />
           </div>
         </Drawer>
-        {children}
+          {React.cloneElement(children,{isOpen:open})}
+        {/* {children} */}
       </div>
 
 

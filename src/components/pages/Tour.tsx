@@ -8,7 +8,10 @@ import { createTour, deleteTour, getFicha, updateTour } from "../lib/api";
 import Title from "../compo/title/Title.tsx"
 import { useEffect } from "react";
 
-export const Tour = () => {
+interface Props {
+  isOpen:boolean
+}
+export const Tour = ({isOpen}:Props) => {
   // const notification = useSWR(
   //   // "https://siswebbackend.pdsviajes.com/apiCrud/tours/tour",
   //   "http://127.0.0.1:8000/apiCrud/notification/notification/",
@@ -17,6 +20,7 @@ export const Tour = () => {
   // );
 
 
+  console.log(isOpen)
   const { user, roleMode } = AuthData() as AuthProviderType
 
   if (!user.isAuthenticated) {
@@ -85,12 +89,13 @@ const baseColumnsO = [
   //   console.log("role Mod")
   // },[roleMode])
 
+
   return (
-    <div className={"mt-[170px] ml-3"}>
+    <div className={`mt-[170px] ml-3 transition ease-in-out delay-100  ${isOpen ? "translate-x-[300px]":""}`}>
       <Typography>
         <Title title={"TOURS"} />
       </Typography>
-      <NotificationToast />
+      {/* <NotificationToast /> */}
       <RowTable baseColumns={user.role == "Administrator" ? roles[roleMode] : roles[user.role]} user={user} permission={user.role == "Administrator" ? permisos[roleMode]: permisos[user.role]} url={`${import.meta.env.VITE_URL_BACK}/apiCrud/tours/tour/`} />
     </div>
   );
