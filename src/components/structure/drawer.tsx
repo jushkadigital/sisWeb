@@ -22,6 +22,12 @@ import { NavbarSimple } from "../compo/SimpleNavBar.tsx";
 import { AuthData } from "../../provider/authProvider.tsx";
 import { AuthProviderType } from "../../@types/authTypes";
 import {FooterPDS} from "../compo/footer.tsx";
+import RestaurantIcon from "../../assets/icons/Restaurant.tsx";
+import BoletoIcon from "../../assets/icons/Boleto.tsx";
+import GuideIcon from "../../assets/icons/Guide.tsx";
+import TrainIcon from "../../assets/icons/Train.tsx";
+import TransportIcon from "../../assets/icons/Transport.tsx";
+import MapIcon from "../../assets/icons/Map.tsx";
 
 // import Link from 'next/link'
 const NamesNavbar2URL: { [key: string]: string } = {
@@ -59,15 +65,16 @@ export function NavigationDash({ children }: { children: React.ReactNode }) {
   console.log(currentPage)
   // console.log(currentSlug)
   const navNameICon = [
-    { logo: <PlayCircleIcon className="w-5 text-white" />, name: "TOURS" },
+    { logo: <MapIcon className="w-5 text-white" />, name: "TOURS" },
     { logo: <BuildingOfficeIcon className="w-5 text-white" />, name: "HOTELES" },
-    { logo: <ArrowDownTrayIcon className="w-5 text-white" />, name: "RESTAURANTES" },
-    { logo: <CalendarIcon className="w-5 text-white" />, name: "BOLETOS" },
-    { logo: <CalendarIcon className="w-5 text-white" />, name: "TRASLADOS" },
-    { logo: <CalendarIcon className="w-5 text-white" />, name: "TRENES" },
-    { logo: <CalendarIcon className="w-5 text-white" />, name: "TRANSPORTES" },
-    { logo: <CalendarIcon className="w-5 text-white" />, name: "UPSELLINGS" },
-    { logo: <CalendarIcon className="w-5 text-white" />, name: "GUIADOS" }]
+    { logo: <RestaurantIcon className="w-5 text-white" />, name: "RESTAURANTES" },
+    { logo: <BoletoIcon className="w-5 text-white" />, name: "BOLETOS" },
+    { logo: <TransportIcon className="w-5 text-white" />, name: "TRASLADOS" },
+    { logo: <TrainIcon className="w-5 text-white" />, name: "TRENES" },
+    { logo: <TransportIcon className="w-5 text-white" />, name: "TRANSPORTES" },
+    { logo: <MapIcon className="w-5 text-white" />, name: "UPSELLINGS" },
+    { logo: <GuideIcon className="w-5 text-white" />, name: "GUIADOS" }
+  ]
 
   const navNames = navNameICon.map(ele => ele.name)
   const [idxNav, setIdxNav] = useState<number>(navNames.indexOf(currentSlug[0].toUpperCase()))
@@ -90,7 +97,9 @@ export function NavigationDash({ children }: { children: React.ReactNode }) {
       <NavbarSimple action={toggleDrawer}/>
       
       <div className="flex flex-row">
+
         <Drawer open={open} onClose={() => { }} overlay={false} className="top-22 bg-black flex-col items-center justify-center mt-[150px]">
+
           { user.role == "Administrator" &&
 
         <div className="">
@@ -125,8 +134,8 @@ export function NavigationDash({ children }: { children: React.ReactNode }) {
                 </Link>
               ))}
             </List>
-
           </div>
+
           <div className={"w-full flex justify-start items-start ml-2"}>
             <RenderLogout />
           </div>
