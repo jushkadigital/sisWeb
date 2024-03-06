@@ -1032,7 +1032,8 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
 
   return (
     <div>
-      <div>
+      <div className="mb-10 w-80">
+        <label>Búsqueda</label>
         <DebouncedInput
           value={globalFilter ?? ""}
           onChange={(value) => setGlobalFilter(String(value))}
@@ -1051,7 +1052,7 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
                       <div
                         key={header.id}
                         // colSpan={header.colSpan}
-                        className="table-cell border-b border-blue-gray-100 bg-blue-gray-50 p-4"
+                        className="table-cell border-b border-blue-gray-100 bg-blue-gray-50 py-6"
                       >
                         {header.isPlaceholder ? null : (
                           <HeaderTable header={header} table={table}>

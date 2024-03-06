@@ -41,7 +41,9 @@ function Filter({
           //     : ''
           // }`}
           placeholder="Min"
-          className="w-14 border shadow rounded"
+          Width={"!w-14 !min-w-10"}
+          outlined={`Min`}
+          // className="w-14 border shadow rounded"
         />
         <DebouncedInput
           type="number"
@@ -57,19 +59,22 @@ function Filter({
           //     : ''
           // }`}
           placeholder="Max"
-          className="w-14 border shadow rounded"
+          Width={"!w-14 !min-w-10"}
+          outlined={`Max`}
+          // className="w-14 border shadow rounded"
         />
       </div>
       <div className="h-1" />
     </div>
   ) : (
-    <div className="flex">
+    <div className="flex w-fit">
         <DebouncedInput
         type="text"
         value={(columnFilterValue ?? '') as string}
         onChange={value => column.setFilterValue(value)}
         placeholder={`Buscar... `}
-        className="w-28 border shadow rounded"
+          outlined={`Buscar...`}
+        // className="w-28 border shadow rounded"
         list={column.id + 'list'}
       />
     </div>
