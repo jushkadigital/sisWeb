@@ -69,6 +69,7 @@ import { ToastContainer, toast } from "react-toastify";
 import useSWRMutation from "swr/mutation";
 import { AuthProviderType } from "../../@types/authTypes";
 import PopOver from "./popOver";
+import {ArrowLeftIcon} from "@heroicons/react/16/solid";
 declare module "@tanstack/table-core" {
   interface FilterFns {
     fuzzy: FilterFn<unknown>;
@@ -1049,7 +1050,7 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
           placeholder="Búsqueda..."
         />
       </div>
-      <Card className="h-full w-full">
+      <Card className="h-full w-full mb-24">
         <div className="table border-collapse w-full min-w-max table-auto text-left">
           <div className="table-header-group">
             {isLoading
@@ -1349,15 +1350,17 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
           </div>
         </div>
         {data && (
-          <div className="mx-auto">
+          <div className="mx-auto mt-10">
             <div className="flex items-center gap-2">
-              <button
-                className="border rounded p-1"
+              <IconButton
+                className="w-2 h-6 bg-white border-black p-4"
                 onClick={() => table.setPageIndex(0)}
                 disabled={!table.getCanPreviousPage()}
               >
-                {"<<"}
-              </button>
+                <ArrowLeftIcon strokeWidth={1} color={"#000"} className="h-4 w-4 " />
+              </IconButton>
+
+
               <button
                 className="border rounded p-1"
                 onClick={() => table.previousPage()}
@@ -1365,6 +1368,7 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
               >
                 {"<"}
               </button>
+
               <button
                 className="border rounded p-1"
                 onClick={() => table.nextPage()}
@@ -1372,6 +1376,7 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
               >
                 {">"}
               </button>
+
               <button
                 className="border rounded p-1"
                 onClick={() => table.setPageIndex(table.getPageCount() - 1)}
@@ -1379,13 +1384,23 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
               >
                 {">>"}
               </button>
-              <span className="flex items-center gap-1">
-                <div>Pagina</div>
-                <strong>
-                  {table.getState().pagination.pageIndex + 1} de{" "}
-                  {table.getPageCount()}
-                </strong>
-              </span>
+
+              {/*<span className="flex items-center gap-1">*/}
+              {/*  <div>Pagina</div>*/}
+              {/*  <strong>*/}
+              {/*    {table.getState().pagination.pageIndex + 1} de{" "}*/}
+              {/*    {table.getPageCount()}*/}
+              {/*  </strong>*/}
+              {/*</span>*/}
+
+              <Typography
+                  color="gray"
+                  className="font-normal"
+              >
+                Pagina <strong className="text-gray-900">{table.getState().pagination.pageIndex + 1}</strong> de{" "}
+                <strong className="text-gray-900">{table.getPageCount()}</strong>
+              </Typography>
+
               <span className="flex items-center gap-1">
                 | Ir a la Pagina:
                 <input
@@ -1400,6 +1415,7 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
                   className="border p-1 rounded w-16"
                 />
               </span>
+
               <select
                 value={table.getState().pagination.pageSize}
                 onChange={(e) => {
@@ -1412,11 +1428,14 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
                   </option>
                 ))}
               </select>
+
               <div>{table.getPrePaginationRowModel().rows.length} Filas</div>
+
             </div>
           </div>
         )}
       </Card>
+
       { permission &&
         <button
           className="fixed bottom-8 right-5 rounded-full w-28 flex justify-center items-center  h-28 border border-blue-gray-400"
