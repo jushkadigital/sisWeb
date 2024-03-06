@@ -58,13 +58,14 @@ const baseColumnsO = [
     { name: "ciudad", extra: "none", type: "text" },
     { name: "excursion", extra: "none", type: "text" },
     { name: "provedor", extra: "none", type: "text" },
-    {name:"pe",extra:"sol",type:"number"},
+    // {name:"pe",extra:"sol",type:"number"},
     { name: "pnp", extra: "sol", type: "number" },
-    { name: "pne", extra: "dolar", type: "number" },
+    // { name: "pne", extra: "dolar", type: "number" },
     { name: "pvp", extra: "sol", type: "number" },
     { name: "pve", extra: "dolar", type: "number" },
     { name: "recomendacionesImagen", extra: "link", type: "text" },
     { name: "fichaTecnica", extra: "link", type: "text" },
+    { name: "pdfProveedor", extra: "link", type: "text" },
   ]
   const roles:{[key:string]:any} = {
     "Operaciones":baseColumnsO,
