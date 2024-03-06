@@ -9,7 +9,7 @@ import { RenderInfo } from "../structure/RenderNavigation";
 import { createBoleto, createGuiado, createHotel, createRest, createTraslado, createTren, createUps, deleteBoleto, deleteGuiado, deleteHotel, deleteRest, deleteTraslado, deleteTren, updateBoleto, updateGuiado, updateHotel, updateRest, updateTraslado, updateTren } from "../lib/api";
 import Title from "../compo/title/Title.tsx";
 
-export const Guiado = () => {
+export const Guiado = ({isOpen}:{isOpen:boolean}) => {
   // const notification = useSWR(
   //   // "https://siswebbackend.pdsviajes.com/apiCrud/tours/tour",
   //   "http://127.0.0.1:8000/apiCrud/notification/notification/",
@@ -68,7 +68,7 @@ const baseColumnsV = [
 
 
   return (
-    <div className={"mt-[170px] ml-3"}>
+    <div className={`mt-[170px] ml-3 transition ease-in-out delay-100  ${isOpen ? "translate-x-[300px]":""}`}>
       <Typography>
         <Title title={"GUIADO"} />
       </Typography>

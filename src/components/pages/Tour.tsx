@@ -8,10 +8,8 @@ import { createTour, deleteTour, getFicha, updateTour } from "../lib/api";
 import Title from "../compo/title/Title.tsx"
 import { useEffect } from "react";
 
-interface Props {
-  isOpen:boolean
-}
-export const Tour = ({isOpen}:Props) => {
+
+export const Tour = ({isOpen}:{isOpen:boolean}) => {
   // const notification = useSWR(
   //   // "https://siswebbackend.pdsviajes.com/apiCrud/tours/tour",
   //   "http://127.0.0.1:8000/apiCrud/notification/notification/",

@@ -136,6 +136,7 @@ const traducciones: { [key: string]: string } = {
   niniop: "Niño",
   infantep: "Infante",
   infantee: "Infante",
+  recomendacion: "Recomendación"
 
 
   // Agrega más traducciones según sea necesario
@@ -919,11 +920,19 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
     return texto.replace(regex, (match) => traducciones[match.toLowerCase()]);
   }
   function separarPorMayusculas(palabra: string) {
+
+      const mayus = ["Pe","Pne","Pnp","Pve","Pvp"]
+    
+    if (mayus.includes(palabra)){
+      return palabra.toUpperCase()
+    }
+    
     // Utilizamos una expresión regular para dividir la cadena en palabras basadas en mayúsculas.
     const palabras = palabra.split(/(?=[A-Z])/);
     // Unimos las palabras con un espacio.
     return palabras.join(" ");
   }
+
 
   const gaa = baseColumns
     .map((ele) => {

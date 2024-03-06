@@ -8,7 +8,7 @@ import { RenderInfo } from "../structure/RenderNavigation";
 import { createHotel, deleteHotel, updateHotel } from "../lib/api";
 import Title from "../compo/title/Title.tsx";
 
-export const Hotel = () => {
+export const Hotel = ({isOpen}:{isOpen:boolean}) => {
   // const notification = useSWR(
   //   // "https://siswebbackend.pdsviajes.com/apiCrud/tours/tour",
   //   "http://127.0.0.1:8000/apiCrud/notification/notification/",
@@ -41,7 +41,7 @@ export const Hotel = () => {
     {name:"horarioDesayunoFinal",extra:"time",type:"text"},
     {name:"checkIn",extra:"time",type:"text"},
     {name:"checkOut",extra:"time",type:"text"},
-    { name: "recomendacionesImagen", extra: "link", type: "text" },
+    // { name: "recomendacionesImagen", extra: "link", type: "text" },
     { name: "fichaTecnica", extra: "link", type: "text" },
     { name: "pdfProveedor", extra: "link", type: "text" },
   ]
@@ -60,7 +60,7 @@ const baseColumnsO = [
     {name:"horarioDesayunoFinal",extra:"time",type:"text"},
     {name:"checkIn",extra:"time",type:"text"},
     {name:"checkOut",extra:"time",type:"text"},
-    { name: "recomendacionesImagen", extra: "link", type: "text" },
+    // { name: "recomendacionesImagen", extra: "link", type: "text" },
     { name: "fichaTecnica", extra: "link", type: "text" },
     { name: "pdfProveedor", extra: "link", type: "text" },
   ]
@@ -96,7 +96,7 @@ const baseColumnsV = [
 
 
   return (
-    <div className={"mt-[170px] ml-3"}>
+    <div className={`mt-[170px] ml-3 transition ease-in-out delay-100  ${isOpen ? "translate-x-[300px]":""}`}>
         <Typography>
             <Title title={"HOTELES"} />
         </Typography>

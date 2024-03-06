@@ -8,7 +8,7 @@ import { RenderInfo } from "../structure/RenderNavigation";
 import { createHotel, createRest, deleteHotel, deleteRest, updateHotel, updateRest } from "../lib/api";
 import Title from "../compo/title/Title.tsx";
 
-export const Restaurante = () => {
+export const Restaurante = ({isOpen}:{isOpen:boolean}) => {
   // const notification = useSWR(
   //   // "https://siswebbackend.pdsviajes.com/apiCrud/tours/tour",
   //   "http://127.0.0.1:8000/apiCrud/notification/notification/",
@@ -86,7 +86,7 @@ export const Restaurante = () => {
 
 
   return (
-    <div className={"mt-[170px] ml-3"}>
+    <div className={`mt-[170px] ml-3 transition ease-in-out delay-100  ${isOpen ? "translate-x-[300px]":""}`}>
       <Typography>
         <Title title={"RESTAURANTE"} />
 
