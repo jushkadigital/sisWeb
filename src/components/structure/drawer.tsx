@@ -123,7 +123,7 @@ export function NavigationDash({ children }: { children: React.ReactNode }) {
             <List>
               {navNameICon.map((ele, idx) => (
                 <Link className={"hover:bg-red-900 active:bg-red-900 "} to={NamesNavbar2URL[ele.name]}>
-                  <ListItem className={"hover:bg-red-900 active:bg-red-900"} key={idx} onClick={() => setIdxNav(idx)} >
+                  <ListItem  ripple={true}  className={"group rounded-none  text-sm font-normal text-white hover:bg-red-900  focus:bg-red-900 "} key={idx} onClick={() => setIdxNav(idx)} >
                     <ListItemPrefix >
                       {ele.logo}
                     </ListItemPrefix>
