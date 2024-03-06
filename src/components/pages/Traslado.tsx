@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { RenderInfo } from "../structure/RenderNavigation";
 import { createBoleto, createHotel, createRest, createTraslado, deleteBoleto, deleteHotel, deleteRest, deleteTraslado, updateBoleto, updateHotel, updateRest, updateTraslado } from "../lib/api";
 import Title from "../compo/title/Title.tsx";
+import useWindowDimensions from "../hooks/sizeScreen.tsx";
 
 export const Traslado = ({isOpen}:{isOpen:boolean}) => {
   // const notification = useSWR(
@@ -56,6 +57,10 @@ const roles:{[key:string]:any} = {
     "Ventas": false,
     "Administrator":true
   }
+
+  const {height,width} = useWindowDimensions()
+
+  console.log(width)
 
 
   return (

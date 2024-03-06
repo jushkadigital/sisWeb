@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { createTour, deleteTour, getFicha, updateTour } from "../lib/api";
 import Title from "../compo/title/Title.tsx"
 import { useEffect } from "react";
+import useWindowDimensions from "../hooks/sizeScreen.tsx";
 
 
 export const Tour = ({isOpen}:{isOpen:boolean}) => {
@@ -79,14 +80,20 @@ const baseColumnsO = [
     "Administrator":true
   }
 
+  const {height,width} = useWindowDimensions()
+
   console.log(import.meta.env.VITE_URL_BACK)
   console.log(roleMode)
   console.log(user.role)
+  console.log(width)
 
+
+  // const widthProp = "left-["+"1085" +"px]"
 
   // useEffect(()=>{
   //   console.log("role Mod")
   // },[roleMode])
+  
 
 
   return (
@@ -95,7 +102,7 @@ const baseColumnsO = [
         <Title title={"TOURS"} />
       </Typography>
       {/* <NotificationToast /> */}
-      <RowTable baseColumns={user.role == "Administrator" ? roles[roleMode] : roles[user.role]} user={user} permission={user.role == "Administrator" ? permisos[roleMode]: permisos[user.role]} url={`${import.meta.env.VITE_URL_BACK}/apiCrud/tours/tour/`} />
+      <RowTable  widthScreen={width-500}  baseColumns={user.role == "Administrator" ? roles[roleMode] : roles[user.role]} user={user} permission={user.role == "Administrator" ? permisos[roleMode]: permisos[user.role]} url={`${import.meta.env.VITE_URL_BACK}/apiCrud/tours/tour/`} />
     </div>
   );
 }

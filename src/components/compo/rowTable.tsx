@@ -58,6 +58,7 @@ interface Props {
   url: string;
   baseColumns: { name: string; extra: string; type: string }[];
   user: any;
+  widthScreen:number
   // methods: {
   //   create: any;
   //   update: any;
@@ -290,7 +291,7 @@ export async function updateCRUDUSER(url: string, { arg }) {
   };
   return await fetchData({ url: url + `clean/${arg.id}/`, options });
 }
-function RowTable({ permission, user, url, baseColumns }: Props) {
+function RowTable({ permission, user, url, baseColumns ,widthScreen}: Props) {
   // function gaa(baseColumns:any){
   //  const names = baseColumns.map(ele=>ele.name)
   //  const values = ["","",jk]
@@ -1437,7 +1438,8 @@ function RowTable({ permission, user, url, baseColumns }: Props) {
       </Card>
         { permission && data &&
             <button
-              className="sticky bottom-32  left-[1350px] overflow-x-auto  mr-[-40px]  bg-red-900  rounded-full w-24 flex justify-center items-center  h-24 border border-red-900 hover:border-white shadow-lg shadow-black "
+              className={`sticky bottom-32  bg-red-900  rounded-full w-24 flex justify-center items-center  h-24 border border-red-900 hover:border-white shadow-lg shadow-black `}
+            style={{left:widthScreen}}
               onClick={async () => await Add()}
             >
               <PlusIcon color="white" className="w-20" />
