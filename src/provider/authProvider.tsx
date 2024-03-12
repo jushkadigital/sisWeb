@@ -157,7 +157,7 @@ export const AuthWrapper = () => {
 
 
   useEffect(() => {
-    let fourMinutes = 1000 * 60 * 3.5;
+    let fourMinutes = 1000 * 60 * 4;
     const interval = setInterval(() => {
       if (authTokens) {
         updateToken();

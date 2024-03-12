@@ -298,8 +298,8 @@ function RowTable({ permission, user, url, baseColumns ,widthScreen}: Props) {
   // }
 
   const notify = (message: string) => toast(message);
-  // const { mutate } = useSWRConfig()
-  const { data, error, isLoading, mutate } = useSWR(
+  const { mutate } = useSWRConfig()
+  const { data, error, isLoading, mutate:dataMutate } = useSWR(
     // "https://siswebbackend.pdsviajes.com/apiCrud/tours/tour",
     url,
     getCrud
@@ -314,10 +314,10 @@ function RowTable({ permission, user, url, baseColumns ,widthScreen}: Props) {
     updateCRUD
   );
 
-  const { error: ee3, trigger: triggerUpdateUser } = useSWRMutation(
-    url,
-    updateCRUDUSER
-  );
+  // const { error: ee3, trigger: triggerUpdateUser } = useSWRMutation(
+  //   url,
+  //   updateCRUDUSER
+  // );
 
   const { error: ee4, trigger: triggerDelete } = useSWRMutation(
     url,
@@ -759,12 +759,14 @@ function RowTable({ permission, user, url, baseColumns ,widthScreen}: Props) {
           }
           // const resp = await triggerUpdateUser({ data: user.id, id: row.original.id  },{optimisticData:[...data,{...row.original,currentUser:user.id}]})
 
+          
           table.options.meta?.updateData(
             row,
             table.options.meta?.setEdites,
             // mutate
-            triggerUpdateUser
+            dataMutate
           );
+          
           // await triggerUpdateUser({ data: user.id, id: row.original.id }
           // ,{optimisticData:dataa=> ([...dataa,{...row.original,currentUser:user.id}]),
           // rollbackOnError:true} 
@@ -1006,22 +1008,52 @@ function RowTable({ permission, user, url, baseColumns ,widthScreen}: Props) {
       updateData: async (row, func, funn) => {
         console.log("GAAAROWW");
         skipAutoResetPageIndex();
-        await funn(
-          { data: user.id, id: row.original.id }
-          , {
-            optimisticData: dataa => ([...dataa, { ...row.original, currentUser: user.id }]),
-            rollbackOnError: true
-          }
-        );
-        skipAutoResetPageIndex();
         // await funn(
-        //   url,
-        //   updateCRUDUSER(url, { arg: { data: user.id, id: row.original.id } })
+        //   { data: user.id, id: row.original.id }
+        //   , {
+        //     optimisticData: dataa => ([...dataa, { ...row.original, currentUser: user.id }]),
+        //     rollbackOnError: true
+        //   }
         // );
         // skipAutoResetPageIndex();
-        // func((el) =>
-        //   el.map((ele, idx) => (idx == row.index ? true : false))
+        // await funn(
+        //   url,
+        //   updateCRUDUSER(url, { arg: { data: user.id, id: row.original.id } }),{
+        //   populateCache:(newUpdate,todos)=>{
+        //       const filtered = todos.filter(todo=> todo.id !== row.original.id)
+        //       return [...filtered,newUpdate]
+        //     }
+        //     ,onSuccess:async()=>{
+        //       console.log("GA")
+        //     await dataMutate()
+        //     func((el) =>
+        //     el.map((ele, idx) => (idx == row.index ? true : false))
         // )
+        //     
+        //   },revalidate:false}
+        // );
+         
+        console.log(data)
+        await funn(updateCRUDUSER(url,{ arg: { data: user.id, id: row.original.id } }),{
+          optimisticData: data.map(ele=>{
+            if(ele.id == row.original.id){
+              return {...ele,currentUser:user.id}
+            }else{
+              return {...ele}
+            }
+          })
+          ,
+         rollbackOnError:false,
+          populateCache:true,
+          revalidate:false,
+
+        })
+        
+        console.log(data)
+        skipAutoResetPageIndex();
+        func((el) =>
+          el.map((ele, idx) => (idx == row.index ? true : false))
+        )
         //   // await triggerUpdateUser({ data: user.id, id: row.original.id  })
       },
     },
